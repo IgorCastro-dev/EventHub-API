@@ -1,8 +1,10 @@
 package com.igor.eventhubapi.entity;
 
+import com.igor.eventhubapi.dto.EventoRequestDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,18 +26,26 @@ public class Evento {
     private Integer vagasDisponiveis;
 
     @OneToMany(mappedBy = "evento")
-    private List<Ingresso> ingressos;
+    private List<Ingresso> ingressos = new ArrayList<>();
 
     public Evento() {
     }
 
-    public Evento(String nome, LocalDateTime data, String local, Integer capacidade, Integer vagasDisponiveis, List<Ingresso> ingressos) {
+    public Evento(String nome, LocalDateTime data, String local, Integer capacidade) {
         this.nome = nome;
         this.data = data;
         this.local = local;
         this.capacidade = capacidade;
-        this.vagasDisponiveis = vagasDisponiveis;
-        this.ingressos = ingressos;
+        this.vagasDisponiveis = capacidade;
+    }
+
+    public static Evento fromDTO(final EventoRequestDTO event) {
+        return new Evento(
+                event.nome(),
+                event.data(),
+                event.local(),
+                event.capacidade()
+        );
     }
 
     @Override
