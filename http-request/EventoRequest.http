@@ -1,0 +1,30 @@
+### Criar Evento
+POST http://localhost:8080/eventos
+Content-Type: application/json
+
+{
+  "nome": "Java Conference 2026",
+  "data": "2026-12-10T20:00:00",
+  "local": "Rio de Janeiro",
+  "capacidade": 100
+}
+
+### Listar Eventos
+GET http://localhost:8080/eventos
+
+### Buscar Evento por ID
+GET http://localhost:8080/eventos/1
+
+### Atualizar Evento
+PUT http://localhost:8080/eventos/1
+Content-Type: application/json
+
+{
+  "nome": "Java Conference Atualizada",
+  "data": "2026-12-15T20:00:00",
+  "local": "São Paulo",
+  "capacidade": 150
+}
+
+### Deletar Evento
+DELETE http://localhost:8080/eventos/1
