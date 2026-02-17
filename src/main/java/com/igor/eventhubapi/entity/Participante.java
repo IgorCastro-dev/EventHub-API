@@ -2,6 +2,7 @@ package com.igor.eventhubapi.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,16 +18,15 @@ public class Participante {
     private String email;
 
     @OneToMany(mappedBy = "participante")
-    private List<Ingresso> ingressos;
+    private List<Ingresso> ingressos = new ArrayList<>();
 
     public Participante() {
     }
 
-    public Participante(Long id, String nome, String email, List<Ingresso> ingressos) {
+    public Participante(Long id, String nome, String email) {
         this.id = id;
         this.nome = nome;
         this.email = email;
-        this.ingressos = ingressos;
     }
 
     public Long getId() {
