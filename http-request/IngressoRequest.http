@@ -1,0 +1,11 @@
+### Comprar ingresso
+POST http://localhost:8080/ingressos
+Content-Type: application/json
+
+{
+  "eventoId": 2,
+  "participanteId": 1
+}
+
+### Histórico de ingressos do participante
+GET http://localhost:8080/ingressos/historico/1

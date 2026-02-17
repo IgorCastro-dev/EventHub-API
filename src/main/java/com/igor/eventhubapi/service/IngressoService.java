@@ -1,6 +1,7 @@
 package com.igor.eventhubapi.service;
 
 import com.igor.eventhubapi.dto.CompraIngressoDTO;
+import com.igor.eventhubapi.dto.IngressoResponseDTO;
 import com.igor.eventhubapi.entity.Evento;
 import com.igor.eventhubapi.entity.Ingresso;
 import com.igor.eventhubapi.entity.Participante;
@@ -14,6 +15,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static com.igor.eventhubapi.service.EventoService.EVENTO_NAO_ENCONTRADO_MENSAGEM;
 
@@ -35,7 +37,7 @@ public class IngressoService {
     }
 
     @Transactional
-    public void comprarIngresso(CompraIngressoDTO dto) {
+    public IngressoResponseDTO comprarIngresso(CompraIngressoDTO dto) {
 
         Evento evento = eventoRepository.findById(dto.eventoId())
                 .orElseThrow(() -> new EventoNaoEncontradoException(EVENTO_NAO_ENCONTRADO_MENSAGEM));
@@ -54,7 +56,21 @@ public class IngressoService {
                 participante,
                 LocalDateTime.now()
         );
-        ingressoRepository.save(ingresso);
+        Ingresso ingressoCriado = ingressoRepository.save(ingresso);
+        return Ingresso.toDTO(ingressoCriado);
     }
+
+    public List<IngressoResponseDTO> listarIngressosPorParticipante(Long participanteId) {
+
+        Participante participante = participanteRepository.findById(participanteId)
+                .orElseThrow(() ->
+                        new ParticipanteNaoEncontradoException("Participante não encontrado"));
+
+        return ingressoRepository.findByParticipante(participante)
+                .stream()
+                .map(Ingresso::toDTO)
+                .toList();
+    }
+
 }
 

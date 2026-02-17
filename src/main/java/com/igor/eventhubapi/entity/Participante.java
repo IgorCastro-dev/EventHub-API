@@ -29,6 +29,22 @@ public class Participante {
         this.ingressos = ingressos;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public List<Ingresso> getIngressos() {
+        return ingressos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

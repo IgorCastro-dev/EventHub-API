@@ -1,5 +1,7 @@
 package com.igor.eventhubapi.entity;
 
+import com.igor.eventhubapi.dto.EventoResponseDTO;
+import com.igor.eventhubapi.dto.IngressoResponseDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -27,6 +29,32 @@ public class Ingresso {
         this.evento = evento;
         this.participante = participante;
         this.dataCompra = dataCompra;
+    }
+
+    public static IngressoResponseDTO toDTO(final Ingresso entity) {
+        return new IngressoResponseDTO(
+                entity.getId(),
+                entity.evento.getNome(),
+                entity.evento.getData(),
+                entity.evento.getLocal(),
+                entity.getDataCompra()
+        );
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Evento getEvento() {
+        return evento;
+    }
+
+    public Participante getParticipante() {
+        return participante;
+    }
+
+    public LocalDateTime getDataCompra() {
+        return dataCompra;
     }
 
     @Override

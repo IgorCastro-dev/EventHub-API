@@ -19,4 +19,22 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);
     }
+
+    @ExceptionHandler(ParticipanteNaoEncontradoException.class)
+    public ResponseEntity<Erro> handleParticipanteNaoEncontradoException(
+            ParticipanteNaoEncontradoException ex) {
+
+        Erro erro = new Erro(HttpStatus.NOT_FOUND,ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(erro);
+    }
+
+    @ExceptionHandler(EventoLotadoException.class)
+    public ResponseEntity<Erro> handleEventoLotadoException(
+            EventoLotadoException ex) {
+
+        Erro erro = new Erro(HttpStatus.CONFLICT,ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(erro);
+    }
 }
