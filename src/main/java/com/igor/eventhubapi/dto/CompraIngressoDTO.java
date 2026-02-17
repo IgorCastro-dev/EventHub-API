@@ -1,4 +1,7 @@
 package com.igor.eventhubapi.dto;
 
-public record CompraIngressoDTO() {
-}
+public record CompraIngressoDTO(
+        Long eventoId,
+        Long participanteId
+) {}
+

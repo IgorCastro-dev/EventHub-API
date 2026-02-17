@@ -14,7 +14,7 @@ import java.util.List;
 public class EventoService {
 
     private final EventoRepository eventoRepository;
-    private final String EVENTO_NAO_ENCONTRADO_MENSAGEM = "Evento não encontrado";
+    protected static final String EVENTO_NAO_ENCONTRADO_MENSAGEM = "Evento não encontrado";
 
     public EventoService(EventoRepository eventoRepository) {
         this.eventoRepository = eventoRepository;

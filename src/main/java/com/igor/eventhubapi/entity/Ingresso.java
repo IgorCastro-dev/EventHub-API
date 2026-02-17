@@ -23,8 +23,7 @@ public class Ingresso {
     public Ingresso() {
     }
 
-    public Ingresso(Long id, Evento evento, Participante participante, LocalDateTime dataCompra) {
-        this.id = id;
+    public Ingresso(Evento evento, Participante participante, LocalDateTime dataCompra) {
         this.evento = evento;
         this.participante = participante;
         this.dataCompra = dataCompra;
