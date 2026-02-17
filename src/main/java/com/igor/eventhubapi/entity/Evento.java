@@ -1,6 +1,7 @@
 package com.igor.eventhubapi.entity;
 
 import com.igor.eventhubapi.dto.EventoRequestDTO;
+import com.igor.eventhubapi.dto.EventoResponseDTO;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -46,6 +47,73 @@ public class Evento {
                 event.local(),
                 event.capacidade()
         );
+    }
+
+    public static EventoResponseDTO toDTO(final Evento entity) {
+        return new EventoResponseDTO(
+                entity.id,
+                entity.nome,
+                entity.data,
+                entity.local,
+                entity.capacidade,
+                entity.vagasDisponiveis
+        );
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public LocalDateTime getData() {
+        return data;
+    }
+
+    public void setData(LocalDateTime data) {
+        this.data = data;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
+    }
+
+    public Integer getCapacidade() {
+        return capacidade;
+    }
+
+    public void setCapacidade(Integer capacidade) {
+        this.capacidade = capacidade;
+    }
+
+    public Integer getVagasDisponiveis() {
+        return vagasDisponiveis;
+    }
+
+    public void setVagasDisponiveis(Integer vagasDisponiveis) {
+        this.vagasDisponiveis = vagasDisponiveis;
+    }
+
+    public List<Ingresso> getIngressos() {
+        return ingressos;
+    }
+
+    public void setIngressos(List<Ingresso> ingressos) {
+        this.ingressos = ingressos;
     }
 
     @Override
