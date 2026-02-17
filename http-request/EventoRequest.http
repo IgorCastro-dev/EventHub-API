@@ -23,7 +23,7 @@ Content-Type: application/json
   "nome": "Java Conference Atualizada",
   "data": "2026-12-15T20:00:00",
   "local": "São Paulo",
-  "capacidade": 150
+  "capacidade": 3
 }
 
 ### Deletar Evento
